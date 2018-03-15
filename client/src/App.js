@@ -10,13 +10,15 @@ import {
   Route,
   Link
 } from 'react-router-dom';
+// import Listing from './listing';
 
 class App extends Component {
   constructor(props) {
     super()
     this.state = {
       token: '',
-      user: {}
+      user: {},
+      listings: {}
     }
     this.liftTokenToState = this.liftTokenToState.bind(this)
     this.logout = this.logout.bind(this)
@@ -30,8 +32,14 @@ class App extends Component {
     })
   }
 
-  handleLocationSelect() {
+  handleLocationSelect(e) {
     console.log('LocationSelected')
+    e.preventDefault()
+    axios.get('/listings/' + e.target.value).then( result => {
+      this.setState({
+        listings: result.data
+      }).catch(err => console.log(err))
+    })
   }
 
   logout() {
@@ -76,7 +84,7 @@ class App extends Component {
                 <button onClick={this.logout}>Logout</button>
               </div>
             </nav>
-            <Route exact path='/' component={(props) => <Home onLocationSelect={this.onLocationSelect } />} />
+            <Route exact path='/' component={(props) => <Home onLocationSelect={this.handleLocationSelect } />} />
             {/*<UserProfile user=theUser} logout=this.logout} />*/}
           </div>
         </Router>
