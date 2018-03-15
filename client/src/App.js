@@ -10,7 +10,7 @@ import {
   Route,
   Link
 } from 'react-router-dom';
-// import Listing from './listing';
+import Listing from './Listing';
 
 class App extends Component {
   constructor(props) {
@@ -39,6 +39,7 @@ class App extends Component {
       this.setState({
         listings: result.data
       })
+      console.log(this.state.listings)
     }).catch(err => console.log(err))
   }
 
@@ -76,22 +77,19 @@ class App extends Component {
         <Router>
           <div className="App">
             <nav>
-              <div class="logo">
+              <div className="logo">
                 <img src="/img/logo.jpg" />
               </div>
-              <div class='nav-links'>
+              <div className='nav-links'>
                 <a href="/">Home</a>
                 <button onClick={this.logout}>Logout</button>
               </div>
             </nav>
             <Route exact path='/'
-              component={(props) =>
-                <Home onLocationSelect={this.handleLocationSelect listings={this.state.listings} } />
-              }
-            />
+              component={(props) => <Home onLocationSelect={this.handleLocationSelect} listings={this.state.listings} /> } />
             <Route exact path='/listing'
               component={(props) =>
-                <Listing listings={this.state.listings} } />
+                <Listing listings={this.state.listings}  />
               }
             />
             {/*<UserProfile user=theUser} logout=this.logout} />*/}
