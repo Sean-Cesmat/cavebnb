@@ -18,7 +18,8 @@ class App extends Component {
     this.state = {
       token: '',
       user: {},
-      listings: {}
+      listings: [],
+      current: {}
     }
     this.liftTokenToState = this.liftTokenToState.bind(this)
     this.logout = this.logout.bind(this)
