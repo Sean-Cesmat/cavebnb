@@ -11,6 +11,7 @@ mongoose.connect('mongodb://localhost/caveBnb');
 // var index = require('./routes/index');
 // var users = require('./routes/users');
 var auth = require('./routes/auth');
+var listings = require('./routes/listings');
 
 var app = express();
 
@@ -28,6 +29,7 @@ app.use(function(req, res, next) {
 });
 
 app.use('/auth', auth);
+app.use('/listings', listings);
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
