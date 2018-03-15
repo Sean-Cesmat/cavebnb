@@ -45,6 +45,7 @@ class App extends Component {
         redirectTo: '/listing'
       })
       console.log(this.state.current)
+      window.location = '/listing'
     }).catch(err => console.log(err))
   }
 
