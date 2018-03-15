@@ -1,3 +1,42 @@
 .App {
   text-align: center;
 }
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10vw;
+}
+
+.logo {
+  max-width: 100%;
+  width: 300px;
+}
+
+img {
+  max-width: 100%;
+}
+
+.nav-links a, .nav-links button {
+  margin: 0 10px;
+  border: none;
+  background: #f1f1f1;
+  padding: 3px 10px;
+  border-radius: 2px;
+}
+.nav-links a:hover, .nav-links button:hover{
+  background: #db2f33;
+}
+
+
+.header-img {
+  width: 100%;
+}
+
+#location-bar {
+  background: #fff;
+  max-width: 90%;
+  width: 700px;
+  margin: 0 auto;
+}

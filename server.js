@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 
 // Mongoose stuff
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/mernJwtAuth');
+mongoose.connect('mongodb://localhost/caveBnb');
 
 // var index = require('./routes/index');
 // var users = require('./routes/users');

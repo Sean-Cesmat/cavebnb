@@ -4,6 +4,12 @@ import Signup from './Signup';
 import Login from './Login';
 import { UserProfile } from './UserProfile';
 import axios from 'axios';
+import Home from './Home';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom';
 
 class App extends Component {
   constructor(props) {
@@ -14,6 +20,7 @@ class App extends Component {
     }
     this.liftTokenToState = this.liftTokenToState.bind(this)
     this.logout = this.logout.bind(this)
+    this.handleLocationSelect = this.handleLocationSelect.bind(this)
   }
 
   liftTokenToState(data) {
@@ -21,6 +28,10 @@ class App extends Component {
       token: data.token,
       user: data.user
     })
+  }
+
+  handleLocationSelect() {
+    console.log('LocationSelected')
   }
 
   logout() {
@@ -54,9 +65,21 @@ class App extends Component {
     let theUser = this.state.user
     if (typeof this.state.user === 'object' && Object.keys(this.state.user).length > 0) {
       return (
-        <div className="App">
-          <UserProfile user={theUser} logout={this.logout} />
-        </div>
+        <Router>
+          <div className="App">
+            <nav>
+              <div class="logo">
+                <img src="/img/logo.jpg" />
+              </div>
+              <div class='nav-links'>
+                <a href="/">Home</a>
+                <button onClick={this.logout}>Logout</button>
+              </div>
+            </nav>
+            <Route exact path='/' component={(props) => <Home onLocationSelect={this.onLocationSelect } />} />
+            {/*<UserProfile user=theUser} logout=this.logout} />*/}
+          </div>
+        </Router>
       );
     } else {
       return (
