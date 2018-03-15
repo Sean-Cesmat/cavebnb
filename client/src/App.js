@@ -8,7 +8,8 @@ import Home from './Home';
 import {
   BrowserRouter as Router,
   Route,
-  Link
+  Link,
+  Redirect
 } from 'react-router-dom';
 import Listing from './Listing';
 
@@ -19,11 +20,13 @@ class App extends Component {
       token: '',
       user: {},
       listings: [],
-      current: {}
+      current: {},
+      redirectTo: null
     }
     this.liftTokenToState = this.liftTokenToState.bind(this)
     this.logout = this.logout.bind(this)
     this.handleLocationSelect = this.handleLocationSelect.bind(this)
+    this.handleCurrent = this.handleCurrent.bind(this)
   }
 
   liftTokenToState(data) {
@@ -36,9 +39,10 @@ class App extends Component {
   handleCurrent(e) {
     e.preventDefault()
     console.log(e.target.id)
-    axios.get('/listings/' + e.target.id).then( result => {
+    axios.get('/listings/cave/' + e.target.id).then( result => {
       this.setState({
-        current: result.data
+        current: result.data,
+        redirectTo: '/listing'
       })
       console.log(this.state.current)
     }).catch(err => console.log(err))
@@ -49,7 +53,8 @@ class App extends Component {
     e.preventDefault()
     axios.get('/listings/' + e.target.value).then( result => {
       this.setState({
-        listings: result.data
+        listings: result.data,
+        current: {}
       })
       console.log(this.state.listings)
     }).catch(err => console.log(err))
@@ -76,18 +81,23 @@ class App extends Component {
         localStorage.setItem('mernToken', result.data.token)
         this.setState({
           token: result.data.token,
-          user: result.data.user,
+          user: result.data.user
         })
       }).catch( err => console.log(err))
     }
   }
 
   render() {
+    let redirect;
+    if (this.state.redirectTo) {
+      redirect = (<Redirect to={{ pathname: this.state.redirectTo }} />)
+    }
     let theUser = this.state.user
     if (typeof this.state.user === 'object' && Object.keys(this.state.user).length > 0) {
       return (
         <Router>
           <div className="App">
+            {redirect}
             <nav>
               <div className="logo">
                 <img src="/img/logo.jpg" />

@@ -25,8 +25,8 @@ router.get('/:location', (req, res) => {
   })
 })
 
-router.get('/:id', (req, res) => {
-  Listing.find({ _id: +id }, function(err, listing) {
+router.get('/cave/:id', (req, res) => {
+  Listing.find({ _id: req.params.id}, function(err, listing) {
     if (err) {
       console.log(`Got an error finding the listing: ${err}`)
     } else {
