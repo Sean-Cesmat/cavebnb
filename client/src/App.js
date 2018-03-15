@@ -24,6 +24,7 @@ class App extends Component {
     this.liftTokenToState = this.liftTokenToState.bind(this)
     this.logout = this.logout.bind(this)
     this.handleLocationSelect = this.handleLocationSelect.bind(this)
+    this.handleCurrent = this.handleCurrent.bind(this)
   }
 
   liftTokenToState(data) {
@@ -36,11 +37,12 @@ class App extends Component {
   handleCurrent(e) {
     e.preventDefault()
     console.log(e.target.id)
-    axios.get('/listings/' + e.target.id).then( result => {
+    axios.get('/listings/cave/' + e.target.id).then( result => {
       this.setState({
         current: result.data
       })
       console.log(this.state.current)
+      window.location = '/listing'
     }).catch(err => console.log(err))
   }
 

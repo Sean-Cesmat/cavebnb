@@ -40,3 +40,24 @@ img {
   width: 700px;
   margin: 0 auto;
 }
+.all-cave-listing-container {
+  display: flex;
+   /* font-size: 0; */
+   flex-wrap:wrap;
+   margin:-10px 0 0 -10px;
+}
+.cave-listing-container {
+  width: calc(100% * (1/4) - 10px - 1px);
+  display: inline-block;
+  margin:10px 1% 0 1%;
+  flex-grow: 1;
+}
+
+.cave-image-container {
+  max-width: 100%;
+    max-height: 130px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
