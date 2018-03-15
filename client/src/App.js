@@ -38,8 +38,9 @@ class App extends Component {
     axios.get('/listings/' + e.target.value).then( result => {
       this.setState({
         listings: result.data
-      }).catch(err => console.log(err))
-    })
+      })
+      console.log(this.state.listings)
+    }).catch(err => console.log(err))
   }
 
   logout() {
@@ -84,7 +85,16 @@ class App extends Component {
                 <button onClick={this.logout}>Logout</button>
               </div>
             </nav>
-            <Route exact path='/' component={(props) => <Home onLocationSelect={this.handleLocationSelect } />} />
+            <Route exact path='/'
+              component={(props) =>
+                <Home onLocationSelect={this.handleLocationSelect listings={this.state.listings} } />
+              }
+            />
+            <Route exact path='/listing'
+              component={(props) =>
+                <Listing listings={this.state.listings} } />
+              }
+            />
             {/*<UserProfile user=theUser} logout=this.logout} />*/}
           </div>
         </Router>
