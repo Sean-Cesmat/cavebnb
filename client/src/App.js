@@ -18,7 +18,8 @@ class App extends Component {
     this.state = {
       token: '',
       user: {},
-      listings: {}
+      listings: [],
+      current: {}
     }
     this.liftTokenToState = this.liftTokenToState.bind(this)
     this.logout = this.logout.bind(this)
@@ -30,6 +31,17 @@ class App extends Component {
       token: data.token,
       user: data.user
     })
+  }
+
+  handleCurrent(e) {
+    e.preventDefault()
+    console.log(e.target.id)
+    axios.get('/listings/' + e.target.id).then( result => {
+      this.setState({
+        current: result.data
+      })
+      console.log(this.state.current)
+    }).catch(err => console.log(err))
   }
 
   handleLocationSelect(e) {
@@ -86,10 +98,10 @@ class App extends Component {
               </div>
             </nav>
             <Route exact path='/'
-              component={(props) => <Home onLocationSelect={this.handleLocationSelect} listings={this.state.listings} /> } />
+              component={(props) => <Home onLocationSelect={this.handleLocationSelect} onCurrentSelect={this.handleCurrent} listings={this.state.listings}  /> } />
             <Route exact path='/listing'
               component={(props) =>
-                <Listing listings={this.state.listings}  />
+                <Listing current={this.state.current}  />
               }
             />
             {/*<UserProfile user=theUser} logout=this.logout} />*/}
