@@ -39,7 +39,6 @@ class App extends Component {
       this.setState({
         listings: result.data
       })
-      console.log(this.state.listings)
     }).catch(err => console.log(err))
   }
 

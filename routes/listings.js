@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var Listing = require('../models/listing');
 
 
-router.get('/:location', (req, res) => {
+router.get('/listings/:location', (req, res) => {
   let location = ''
   if (req.params.location === 'big-rock') {
     location = 'Big Rock'
