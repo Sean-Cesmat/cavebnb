@@ -5,7 +5,6 @@ var Listing = require('../models/listing');
 
 
 router.get('/:location', (req, res) => {
-  console.log('hit listing route')
   let location = ''
   if (req.params.location === 'big-rock') {
     location = 'Big Rock'
@@ -22,6 +21,17 @@ router.get('/:location', (req, res) => {
     } else {
       console.log(location)
       res.send(location)
+    }
+  })
+})
+
+router.get('/:id', (req, res) => {
+  Listing.find({ _id: +id }, function(err, listing) {
+    if (err) {
+      console.log(`Got an error finding the listing: ${err}`)
+    } else {
+      console.log(listing)
+      res.send(listing)
     }
   })
 })
