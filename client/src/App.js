@@ -38,8 +38,8 @@ class App extends Component {
     axios.get('/listings/' + e.target.value).then( result => {
       this.setState({
         listings: result.data
-      }).catch(err => console.log(err))
-    })
+      })
+    }).catch(err => console.log(err))
   }
 
   logout() {
