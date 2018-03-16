@@ -146,8 +146,11 @@ class App extends Component {
       return (
         <div className="login-app">
           <div className="login-container">
-            <Signup liftToken={this.liftTokenToState} />
-            <Login liftToken={this.liftTokenToState} />
+            <img src="/img/logo.png" />
+            <div>
+              <Signup liftToken={this.liftTokenToState} />
+              <Login liftToken={this.liftTokenToState} />
+            </div>
           </div>
         </div>
       );

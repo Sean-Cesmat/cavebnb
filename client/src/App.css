@@ -193,10 +193,21 @@ img {
     background: rgba(0,0,0,.7);
     padding: 20px 50px;
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
     width: 500px;
     max-width: 100%;
     border-radius: 5px;
+}
+
+.login-container div {
+  display: flex;
+  justify-content: space-around;
+}
+
+.login-container img{
+  width: 380px;
+  margin: 0 auto;
 }
 
 .login-container input{
