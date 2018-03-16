@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Signup from './Signup';
 import Login from './Login';
-import { UserProfile } from './UserProfile';
+// import { UserProfile } from './UserProfile';
 import axios from 'axios';
 import Home from './Home';
 import {
@@ -21,12 +21,14 @@ class App extends Component {
       user: {},
       listings: [],
       current: {},
-      redirectTo: null
+      redirectTo: null,
+      modal: false,
     }
     this.liftTokenToState = this.liftTokenToState.bind(this)
     this.logout = this.logout.bind(this)
     this.handleLocationSelect = this.handleLocationSelect.bind(this)
     this.handleCurrent = this.handleCurrent.bind(this)
+    this.handleCompleteOrder = this.handleCompleteOrder.bind(this)
   }
 
   liftTokenToState(data) {
@@ -58,6 +60,13 @@ class App extends Component {
       })
       console.log(this.state.listings)
     }).catch(err => console.log(err))
+  }
+
+  handleCompleteOrder(e) {
+    e.preventDefault()
+    this.setState({
+      modal: true
+    })
   }
 
   logout() {
@@ -97,7 +106,13 @@ class App extends Component {
       return (
         <Router>
           <div className="App">
-          {redirect}
+            <div className="modal {if(this.state.modal) {show}}">
+              <div className="modal-container">
+                <h2>Cave. Booked.</h2>
+                <a href="/">Find More Caves</a>
+              </div>
+            </div>
+            {redirect}
             <nav>
               <div className="logo">
                 <img src="/img/logo.jpg" />
@@ -112,7 +127,7 @@ class App extends Component {
               component={(props) => <Home onLocationSelect={this.handleLocationSelect} onCurrentSelect={this.handleCurrent} listings={this.state.listings}  /> } />
             <Route exact path='/listing'
               component={(props) =>
-                <Listing current={this.state.current}  />
+                <Listing current={this.state.current} modal={this.state.modal} onCompleteOrder={this.handleCompleteOrder}  />
               }
             />
             {/*<UserProfile user=theUser} logout=this.logout} />*/}
@@ -121,9 +136,11 @@ class App extends Component {
       );
     } else {
       return (
-        <div className="App">
-          <Signup liftToken={this.liftTokenToState} />
-          <Login liftToken={this.liftTokenToState} />
+        <div className="login-app">
+          <div className="login-container">
+            <Signup liftToken={this.liftTokenToState} />
+            <Login liftToken={this.liftTokenToState} />
+          </div>
         </div>
       );
     }

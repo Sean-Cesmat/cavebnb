@@ -6,9 +6,12 @@ const Listings = props => (
       return (
         <div key={index} className="cave-listing-container">
           <a href="/listing"  onClick={props.onCurrentSelect}>
-            <div className="cave-image-container"><img src={cave.img} id={cave._id}  /></div>
-            <h6>{cave.name}</h6>
-            <p>{cave.price} per 🌙</p>
+            <div className="cave-image-container">
+              <img src={cave.img} id={cave._id}  />
+              <p>{cave.rating} ⭐️</p>
+            </div>
+            <h1>{cave.name}</h1>
+            <p>{cave.price} <img src="/img/rock.png" className="rock" />s per 🌙s</p>
           </a>
         </div>
       )
