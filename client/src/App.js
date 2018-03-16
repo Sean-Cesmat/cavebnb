@@ -45,7 +45,6 @@ class App extends Component {
         redirectTo: '/listing'
       })
       console.log(this.state.current)
-      window.location = '/listing'
     }).catch(err => console.log(err))
   }
 
@@ -98,7 +97,7 @@ class App extends Component {
       return (
         <Router>
           <div className="App">
-            {redirect}
+          {redirect}
             <nav>
               <div className="logo">
                 <img src="/img/logo.jpg" />
@@ -108,6 +107,7 @@ class App extends Component {
                 <button onClick={this.logout}>Logout</button>
               </div>
             </nav>
+
             <Route exact path='/'
               component={(props) => <Home onLocationSelect={this.handleLocationSelect} onCurrentSelect={this.handleCurrent} listings={this.state.listings}  /> } />
             <Route exact path='/listing'
