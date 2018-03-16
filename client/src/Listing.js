@@ -21,7 +21,7 @@ const Listing = props => {
         <p>Ooos: {ooos}</p>
       </div>
       <div className='button'>
-        <button>Rent for {props.current[0].price} rocks</button>
+        <button onClick={props.onCompleteOrder}>Rent for {props.current[0].price} rocks</button>
       </div>
     </div>
   </div>

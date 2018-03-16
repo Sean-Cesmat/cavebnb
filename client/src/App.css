@@ -152,10 +152,41 @@ img {
 .modal.show {
   display: flex;
 }
+
+.modal a {
+  background: #c43e29;
+  color: #fff;
+  padding: 5px 10px;
+  font-weight: bold;
+  border: none;
+  font-size: 1.2rem;
+  text-decoration: none;
+  border-radius: 2px;
+}
+ .modal a:hover {
+   background: #b3250e;
+   font-size: 1.2rem;
+ }
+
 .modal-container {
   background: #fff;
   border-radius: 3px;
   padding: 20px 35px;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-container img {
+  max-width: 300px;
+  margin-bottom: 20px;
+}
+
+.modal-container h2 {
+  margin: 0px;
+}
+
+.modal-container h3 {
+  margin: 0px 0px 25px;
 }
 
 .login-container {

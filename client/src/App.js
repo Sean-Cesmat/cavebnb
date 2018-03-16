@@ -64,7 +64,9 @@ class App extends Component {
 
   handleCompleteOrder(e) {
     e.preventDefault()
+    console.log('hello')
     this.setState({
+      redirectTo: null,
       modal: true
     })
   }
@@ -101,14 +103,20 @@ class App extends Component {
     if (this.state.redirectTo) {
       redirect = (<Redirect to={{ pathname: this.state.redirectTo }} />)
     }
+    let modalState = 'modal'
+    if (this.state.modal) {
+      modalState = 'modal show'
+    }
     let theUser = this.state.user
     if (typeof this.state.user === 'object' && Object.keys(this.state.user).length > 0) {
       return (
         <Router>
           <div className="App">
-            <div className="modal {if(this.state.modal) {show}}">
+            <div className={modalState}>
               <div className="modal-container">
                 <h2>Cave. Booked.</h2>
+                <h3>Reciept Is Printing</h3>
+                <img src="/img/reciept.jpg" />
                 <a href="/">Find More Caves</a>
               </div>
             </div>
@@ -127,7 +135,7 @@ class App extends Component {
               component={(props) => <Home onLocationSelect={this.handleLocationSelect} onCurrentSelect={this.handleCurrent} listings={this.state.listings}  /> } />
             <Route exact path='/listing'
               component={(props) =>
-                <Listing current={this.state.current} modal={this.state.modal} onCompleteOrder={this.handleCompleteOrder}  />
+                <Listing current={this.state.current} onCompleteOrder={this.handleCompleteOrder}  />
               }
             />
             {/*<UserProfile user=theUser} logout=this.logout} />*/}
