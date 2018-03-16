@@ -122,6 +122,7 @@ class App extends Component {
                 <button onClick={this.logout}>Logout</button>
               </div>
             </nav>
+
             <Route exact path='/'
               component={(props) => <Home onLocationSelect={this.handleLocationSelect} onCurrentSelect={this.handleCurrent} listings={this.state.listings}  /> } />
             <Route exact path='/listing'
